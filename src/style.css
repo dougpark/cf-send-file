@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+:root[data-theme="original"] {
+	color-scheme: light;
+	--theme-app-bg: #f0f4f9;
+	--theme-surface: #ffffff;
+	--theme-surface-subtle: #f8fafd;
+	--theme-surface-hover: #f7faff;
+	--theme-text: #1f1f1f;
+	--theme-text-muted: #444746;
+	--theme-accent: #1a73e8;
+	--theme-accent-secondary: #7c4dff;
+	--theme-border: #e1e3e1;
+	--theme-on-accent: #ffffff;
+	--theme-success: #137333;
+	--theme-success-subtle: #e6f4ea;
+	--theme-warning: #8a6116;
+	--theme-warning-subtle: #fff8e1;
+	--theme-danger: #b3261e;
+	--theme-danger-subtle: #fff8f7;
+	--theme-danger-border: #f1b3b0;
+}
+
+:root,
+:root[data-theme="modern-lite"] {
+	color-scheme: light;
+	--theme-app-bg:#f4f1ea; /* #faf9f6; */
+	--theme-surface: #ffffff;
+	--theme-surface-subtle: #f1f4ef;
+	--theme-surface-hover: #f3ede8;
+	--theme-text: #1e2f23;
+	--theme-text-muted: #52685a;
+	--theme-accent: #e07a5f;
+	--theme-accent-secondary: #81b29a;
+	--theme-border: #d7ded8;
+	--theme-on-accent: #ffffff;
+	--theme-success: #356b4d;
+	--theme-success-subtle: #e7f2eb;
+	--theme-warning: #805b18;
+	--theme-warning-subtle: #fff4d6;
+	--theme-danger: #a63832;
+	--theme-danger-subtle: #fff0ed;
+	--theme-danger-border: #e5aaa2;
+}
+
+:root[data-theme="modern-dark"] {
+	color-scheme: dark;
+	--theme-app-bg: #2b2d42;
+	--theme-surface: #35384f;
+	--theme-surface-subtle: #303247;
+	--theme-surface-hover: #40445d;
+	--theme-text: #edf2f4;
+	--theme-text-muted: #8d99ae;
+	--theme-accent: #ab5b49;
+	--theme-accent-secondary: #81b29a;
+	--theme-border: #4b5068;
+	--theme-on-accent: #ffffff;
+	--theme-success: #9ad7b0;
+	--theme-success-subtle: #234638;
+	--theme-warning: #f4d06f;
+	--theme-warning-subtle: #4a4025;
+	--theme-danger: #ff9b9b;
+	--theme-danger-subtle: #532d39;
+	--theme-danger-border: #874657;
+}
+
+@theme inline {
+	--color-app-bg: var(--theme-app-bg);
+	--color-surface: var(--theme-surface);
+	--color-surface-subtle: var(--theme-surface-subtle);
+	--color-surface-hover: var(--theme-surface-hover);
+	--color-content: var(--theme-text);
+	--color-content-muted: var(--theme-text-muted);
+	--color-accent: var(--theme-accent);
+	--color-accent-secondary: var(--theme-accent-secondary);
+	--color-theme-border: var(--theme-border);
+	--color-on-accent: var(--theme-on-accent);
+	--color-success: var(--theme-success);
+	--color-success-subtle: var(--theme-success-subtle);
+	--color-warning: var(--theme-warning);
+	--color-warning-subtle: var(--theme-warning-subtle);
+	--color-danger: var(--theme-danger);
+	--color-danger-subtle: var(--theme-danger-subtle);
+	--color-danger-border: var(--theme-danger-border);
+}
+
+html,
+body {
+	background: var(--theme-app-bg);
+}
+
+/* iOS Safari auto-zooms the viewport on focus when a field's font-size is
+   under 16px; forcing 16px here (overriding Tailwind's text-sm etc.) stops
+   the zoom without changing the visual size on non-iOS browsers/desktop.
+   !important is needed because a plain element selector can't outrank the
+   text-sm utility class already applied to most inputs. */
+@media (max-width: 640px) {
+	input,
+	select,
+	textarea {
+		font-size: 16px !important;
+	}
+}
+
+/* Custom Markdown Callout Panels & Image Utilities */
+.markdown-body .callout {
+	padding: 1rem 1.25rem;
+	margin: 1.5rem 0;
+	border-left: 4px solid var(--theme-accent);
+	border-radius: 0.75rem;
+	background-color: var(--theme-surface-subtle);
+	color: var(--theme-text);
+}
+
+.markdown-body .callout > *:first-child {
+	margin-top: 0;
+}
+
+.markdown-body .callout > *:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body .callout-info {
+	border-left-color: var(--theme-accent);
+	background-color: var(--theme-surface-subtle);
+}
+
+.markdown-body .callout-warning {
+	border-left-color: var(--theme-warning);
+	background-color: var(--theme-warning-subtle);
+}
+
+.markdown-body .callout-danger {
+	border-left-color: var(--theme-danger);
+	background-color: var(--theme-danger-subtle);
+}
+
+/* Document callout — a clickable card for a single library document/folder
+   link; the whole card acts as the link's hit area, not just the text. */
+.markdown-body .callout-document {
+	padding: 0;
+	overflow: hidden;
+	border-left-color: var(--theme-accent-secondary);
+	background-color: color-mix(in srgb, var(--theme-accent-secondary) 10%, var(--theme-surface));
+}
+
+.markdown-body .callout-document > p {
+	margin: 0;
+}
+
+.markdown-body .callout-document a {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 1rem 1.25rem;
+	color: var(--theme-text);
+	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 0.15s ease;
+}
+
+.markdown-body .callout-document a:hover {
+	background-color: color-mix(in srgb, var(--theme-accent-secondary) 18%, var(--theme-surface));
+}
+
+.markdown-body .callout-document a::before {
+	content: '';
+	flex-shrink: 0;
+	width: 1.25rem;
+	height: 1.25rem;
+	background-color: var(--theme-accent-secondary);
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E") center / contain no-repeat;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.markdown-body .callout-document a::after {
+	content: '\2192';
+	margin-left: auto;
+	color: var(--theme-accent-secondary);
+	font-weight: 700;
+}
+
+/* Layout Container for Rows / Image Grids */
+.markdown-body .callout-row,
+.markdown-body div.row {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 1.5rem 0;
+}
+
+.markdown-body .callout-row > p,
+.markdown-body div.row > p {
+	margin: 0;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+/* Image Utilities */
+.markdown-body img.img-thumb {
+	flex: 1 1 200px;
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.5rem;
+	object-fit: cover;
+	margin: 0;
+}
+
+.markdown-body img.img-rounded {
+	border-radius: 0.75rem;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-body img.img-left {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.markdown-body img.img-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.markdown-body img.img-right {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.markdown-body .text-left {
+	text-align: left;
+}
+
+.markdown-body .text-center {
+	text-align: center;
+}
+
+.markdown-body .text-right {
+	text-align: right;
+}

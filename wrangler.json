@@ -1,0 +1,139 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "my-app",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "vectorize": [
+    {
+      "binding": "HELP_INDEX",
+      "index_name": "my-app-help-dev"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "remote": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "my-app-db-dev",
+      "database_id": "REPLACE_WITH_DEV_D1_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "my-app-bucket-dev"
+    }
+  ],
+  "vars": {
+    "MAIL_FROM": "noreply@example.com"
+  },
+  "env": {
+    "staging": {
+      "name": "my-app-staging",
+      "ai": {
+        "binding": "AI"
+      },
+      "vectorize": [
+        {
+          "binding": "HELP_INDEX",
+          "index_name": "my-app-help-staging"
+        }
+      ],
+      "routes": [
+        {
+          "pattern": "staging.example.com",
+          "custom_domain": true
+        }
+      ],
+      "send_email": [
+        {
+          "name": "EMAIL",
+          "remote": true
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "my-app-db-staging",
+          "database_id": "REPLACE_WITH_STAGING_D1_ID",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "BUCKET",
+          "bucket_name": "my-app-bucket-staging"
+        }
+      ],
+      "vars": {
+        "MAIL_FROM": "noreply@example.com"
+      }
+    },
+    "production": {
+      "name": "my-app-prod",
+      "ai": {
+        "binding": "AI"
+      },
+      "vectorize": [
+        {
+          "binding": "HELP_INDEX",
+          "index_name": "my-app-help-prod"
+        }
+      ],
+      "routes": [
+        {
+          "pattern": "example.com",
+          "custom_domain": true
+        },
+        {
+          "pattern": "www.example.com",
+          "custom_domain": true
+        }
+      ],
+      "send_email": [
+        {
+          "name": "EMAIL",
+          "remote": true
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "my-app-db-prod",
+          "database_id": "REPLACE_WITH_PROD_D1_ID",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "BUCKET",
+          "bucket_name": "my-app-bucket-prod"
+        }
+      ],
+      "vars": {
+        "MAIL_FROM": "noreply@example.com"
+      }
+    }
+  }
+}

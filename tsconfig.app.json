@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"]
+  },
+  "include": [
+    "src/main.ts",
+    "src/App.vue",
+    "src/views/**/*.vue",
+    "src/views/**/*.ts",
+    "src/components/**/*.vue",
+    "src/components/**/*.ts",
+    "src/composables/**/*.ts",
+    "src/router/**/*.ts",
+    "src/types/**/*.ts",
+    "src/lib/markdown.ts",
+    "src/lib/sanitize.ts",
+    "src/lib/session.ts",
+    "vite.config.ts"
+  ]
+}

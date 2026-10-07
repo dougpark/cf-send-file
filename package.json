@@ -1,0 +1,54 @@
+{
+  "name": "cf-vue-starter",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260906.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/bun": "latest",
+    "@types/markdown-it": "^14.2.0",
+    "@types/markdown-it-container": "^4.0.1",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "drizzle-kit": "^0.31.10",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2",
+    "wrangler": "^4.129.0"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.16",
+    "drizzle-orm": "^0.45.2",
+    "github-markdown-css": "^5.9.0",
+    "hono": "^4.13.7",
+    "lucide-vue-next": "^1.0.0",
+    "markdown-it": "^15.0.1",
+    "markdown-it-attrs": "^5.0.1",
+    "markdown-it-container": "^4.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.1"
+  },
+  "scripts": {
+    "dev:worker": "wrangler dev",
+    "dev:vue": "vite",
+    "dev": "trap 'kill 0' EXIT INT TERM; bun run dev:worker & bun run dev:vue & wait",
+    "dev:worker:local": "wrangler dev --local",
+    "dev:local": "trap 'kill 0' EXIT INT TERM; bun run dev:worker:local & bun run dev:vue & wait",
+    "build": "vite build",
+    "deploy:prod": "bun run build && wrangler deploy --env production",
+    "deploy:staging": "bun run build && wrangler deploy --env staging",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "db:migrate:staging": "wrangler d1 migrations apply DB --remote --env staging",
+    "db:migrate:prod": "wrangler d1 migrations apply DB --remote --env production",
+    "index:help": "bun scripts/index-help-docs.ts",
+    "test": "bun test",
+    "typecheck": "tsc -p tsconfig.worker.json --noEmit",
+    "check": "bun run typecheck && bun test && bun run build",
+    "index:help:staging": "bun scripts/index-help-docs.ts --env staging",
+    "index:help:prod": "bun scripts/index-help-docs.ts --env production"
+  }
+}

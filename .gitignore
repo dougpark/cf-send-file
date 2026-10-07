@@ -1,0 +1,45 @@
+# Local data / seeds
+seed.sql
+# Ignore contents of data directory except .gitkeep
+data/*
+!data/.gitkeep
+
+# Dependencies
+node_modules/
+
+# Cloudflare & Wrangler Local State
+.wrangler/
+.dev.vars
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+out/
+*.tgz
+
+# Caches & Logs
+.cache/
+.eslintcache/
+*.tsbuildinfo
+logs/
+*.log
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Testing & Coverage
+coverage/
+*.lcov
+
+# IDEs & System files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
